@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, ImageBackground } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -24,7 +25,9 @@ const categories = [
   },
 ];
 
-export default function App() {
+export default function Intro() {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -70,36 +73,12 @@ export default function App() {
                 borderRadius: 8,
                 alignItems: "center",
               }}
+              onPress={() => navigation.navigate("Homescreen")}
             >
-              <Text style={{ fontWeight: "bold" }}>Set a goal</Text>
+              <Text style={{ fontWeight: "bold" }}>Get Started</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        {/* Bottom Navigation */}
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-around",
-            paddingVertical: 10,
-            borderTopWidth: 1,
-            borderTopColor: "#E0E0E0",
-            backgroundColor: "white",
-          }}
-        >
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="home" size={28} color="#111811" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="magnify" size={28} color="#638863" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="chart-bar" size={28} color="#638863" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name="account" size={28} color="#638863" />
-          </TouchableOpacity>
-        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
