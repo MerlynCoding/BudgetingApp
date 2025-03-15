@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const categories = [
   { title: "Groceries", width: "30%" },
@@ -16,7 +17,8 @@ const initialBills = [
   { id: 2, date: "Jan 10", name: "Rent", amount: "$1,500.00", paid: false },
 ];
 
-export default function App() {
+export default function Homescreen() {
+  const navigation = useNavigation();
   const [bills, setBills] = useState(initialBills);
 
   const markAsPaid = (id: number) => {
@@ -68,13 +70,12 @@ export default function App() {
                   <Text style={styles.billLabel}>{bill.date} - {bill.name}</Text>
                   <Text style={styles.billAmount}>{bill.amount}</Text>
                 </View>
-                <TouchableOpacity
-                  style={[styles.paidButton, bill.paid && { backgroundColor: "#19e619" }]}
-                  onPress={() => markAsPaid(bill.id)}
-                  disabled={bill.paid}
-                >
-                  <Text style={{ fontSize: 14, fontWeight: "bold" }}>{bill.paid ? "Paid" : "Mark as Paid"}</Text>
+                <TouchableOpacity style={styles.paidButton} onPress={() => markAsPaid(bill.id)}>
+                  <Text style={{ fontSize: 14, fontWeight: "bold" }}>
+                    {bill.paid ? "Paid" : "Mark as Paid"}
+                  </Text>
                 </TouchableOpacity>
+
               </View>
             ))}
           </View>
@@ -82,7 +83,10 @@ export default function App() {
 
         {/* Add Transaction Button */}
         <View style={{ padding: 16 }}>
-          <TouchableOpacity style={styles.addTransactionButton}>
+          <TouchableOpacity
+            style={styles.addTransactionButton}
+            onPress={() => navigation.navigate("AddTransaction")}
+          >
             <MaterialCommunityIcons name="cash" size={24} color="#111811" />
             <Text style={{ fontWeight: "bold", fontSize: 16, marginLeft: 8 }}>Add Transaction</Text>
           </TouchableOpacity>
