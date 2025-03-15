@@ -175,7 +175,7 @@ const styles = {
   inputRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "right",
+    alignItems: "flex-end",
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
@@ -183,7 +183,7 @@ const styles = {
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    alignItems:"right",
+    alignItems:"flex-end",
   },
   value: {
     fontSize: 16,
@@ -237,8 +237,10 @@ const styles = {
   },
   iconItem: {
     padding: 10, 
-    alignItems: "right", 
-    margin: 5 },
+    alignItems: "flex-end", 
+    margin: 5 
+},
+
   closeButton: {
     marginTop: 10,
     padding: 10,
